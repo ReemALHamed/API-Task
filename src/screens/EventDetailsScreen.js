@@ -175,8 +175,6 @@ export default function EventDetailsScreen() {
         </Swiper>
       </div>
 
-      <hr />
-
       {/* innerHTML content */}
       <p
         className="mt-5"
