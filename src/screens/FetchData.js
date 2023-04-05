@@ -7,26 +7,22 @@ import "./FetchData.css";
 export default function FetchData() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [eventPerPage, setEventPerPage] = useState(12);
   var items: Item[] = null;
-  const fetchEvents = async (index) => {
-    setLoading(true);
-    const { data } = await Axios.get(
-      `https://api.riyadh.sa/api/CountedEvents?_format=json&page=${index}`
-    );
-    items = data.result.items;
-    setEvents(data);
-    setLoading(false);
-    console.log(data);
-  };
 
   useEffect(() => {
-    fetchEvents();
+    const fetchEvents = async (index) => {
+      setLoading(true);
+      const { data } = await Axios.get(
+        `https://api.riyadh.sa/api/CountedEvents?_format=json&page=${index}`
+      );
+      items = data.result.items;
+      setEvents(data);
+      setLoading(false);
+      console.log(data);
+    };
   }, []);
 
   const [itemOffset, setItemOffset] = useState(0);
-  const endOffset = itemOffset + eventPerPage;
 
   console.log(items);
   let total = 36;
@@ -38,7 +34,6 @@ export default function FetchData() {
     // console.log("event", event.selected);
     setItemOffset(newOffset);
     fetchEvents(event.selected);
-    setCurrentPage(event.selected);
   };
 
   return (

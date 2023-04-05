@@ -14,7 +14,6 @@ import {
   Favorite,
   Visibility,
   PinDrop,
-  CalendarToday,
   AdsClick,
   ArrowBack,
   AlternateEmail,
@@ -169,7 +168,7 @@ export default function EventDetailsScreen() {
                 >
                   {item.category.map((cat) => cat.taxonomy_term_name + "\n")}
                 </div>
-                <img src={img.preview.thumbnail} />
+                <img src={img.preview.thumbnail} alt="thumbnail" />
               </SwiperSlide>
             );
           })}

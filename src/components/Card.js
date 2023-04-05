@@ -1,11 +1,6 @@
-import React, { img } from "react";
+import React from "react";
 import "./card.css";
-import {
-  Link,
-  Navigate,
-  unstable_HistoryRouter,
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Item, Image } from "../interface/EventsData";
 

@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import logo from "./logo.svg";
 import FetchData from "./screens/FetchData";
 import EventDetailsScreen from "./screens/EventDetailsScreen";
 

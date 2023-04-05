@@ -1,16 +1,77 @@
-export interface EventsData {
-  result: Result;
-  errors: any[];
+export interface Author {
+  target_id: number;
+  target_type: any;
+  target_uuid: string;
+  url: String;
+  user_picture: null;
+  user_full_name: any;
+  twitter_account: null;
 }
 
-export interface Result {
-  success: boolean;
-  counters: Counters;
-  items: Item[];
+export interface Category {
+  target_id: number;
+  target_type: any;
+  target_uuid: string;
+  url: string;
+  taxonomy_term_name: string;
+  parent: any[];
+  icon_taxonomy?: null;
 }
 
-export interface Counters {
-  total: number;
+export interface Geofield {
+  address: string;
+  lat: number;
+  lon: number;
+}
+
+export interface Preview {
+  medium: string;
+  thumbnail: string;
+}
+
+export interface Image {
+  target_id: number;
+  target_type: any;
+  url: string;
+  preview: Preview;
+  alt: any;
+  title: string;
+  width: number;
+  height: number;
+}
+export interface Likes {
+  likes: number;
+  state: boolean;
+}
+
+export interface ModerationStatus {
+  state: number;
+  reason: string;
+}
+
+export interface Range {
+  from: null;
+  to: null;
+}
+
+export interface Price {
+  type: number;
+  amount: null;
+  range: Range;
+}
+export interface Time {
+  start_time: number;
+  finish_time: number;
+}
+
+export interface Views {
+  count_views: number;
+}
+
+export interface Website {
+  uri: string;
+  title: string;
+  options: any[];
 }
 
 export interface Item {
@@ -47,81 +108,16 @@ export interface Item {
   type: Type;
   body_summary: string;
 }
-
-export interface Author {
-  target_id: number;
-  target_type: any;
-  target_uuid: string;
-  url: String;
-  user_picture: null;
-  user_full_name: any;
-  twitter_account: null;
+export interface Counters {
+  total: number;
+}
+export interface Result {
+  success: boolean;
+  counters: Counters;
+  items: Item[];
 }
 
-export interface Category {
-  target_id: number;
-  target_type: any;
-  target_uuid: string;
-  url: string;
-  taxonomy_term_name: string;
-  parent: any[];
-  icon_taxonomy?: null;
-}
-
-export interface Geofield {
-  address: string;
-  lat: number;
-  lon: number;
-}
-
-export interface Image {
-  target_id: number;
-  target_type: any;
-  url: string;
-  preview: Preview;
-  alt: any;
-  title: string;
-  width: number;
-  height: number;
-}
-
-export interface Preview {
-  medium: string;
-  thumbnail: string;
-}
-
-export interface Likes {
-  likes: number;
-  state: boolean;
-}
-
-export interface ModerationStatus {
-  state: number;
-  reason: string;
-}
-
-export interface Price {
-  type: number;
-  amount: null;
-  range: Range;
-}
-
-export interface Range {
-  from: null;
-  to: null;
-}
-
-export interface Time {
-  start_time: number;
-  finish_time: number;
-}
-
-export interface Views {
-  count_views: number;
-}
-
-export interface Website {
-  uri: string;
-  title: string;
-  options: any[];
+export interface EventsData {
+  result: Result;
+  errors: any[];
 }
