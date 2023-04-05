@@ -46,7 +46,7 @@
     background: #ffffffd8;
     position: absolute;
     bottom: 0;
-    height: 55%;
+    height: "auto";
     padding: 15px;
     width: 80%;
     right: 0;
@@ -63,5 +63,6 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: space-evenly;
+   min-height: 90vh;
   }
   

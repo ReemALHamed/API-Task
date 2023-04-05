@@ -10,7 +10,7 @@ export const Card = ({ eventsList, load }) => {
 
   if (load || !eventsList || !items) {
     return (
-      <div className="min-h-[85vh] relative ">
+      <div className="min-h-[90vh] relative ">
         <h2 className="loading absolute top-[50%] left-[50%]">Loading ...</h2>
       </div>
     );

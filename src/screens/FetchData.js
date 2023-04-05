@@ -7,26 +7,31 @@ import "./FetchData.css";
 export default function FetchData() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const eventPerPage = useState(12);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [eventPerPage, setEventPerPage] = useState(12);
+  const [total, setTotal] = useState(0);
   var items: Item[] = null;
+  const fetchEvents = async (index) => {
+    setLoading(true);
+    const { data } = await Axios.get(
+      `https://api.riyadh.sa/api/CountedEvents?_format=json&page=${index}`
+    );
+    items = data.result.items;
+    setTotal(data.result.counters.total);
+    setEvents(data);
+    setLoading(false);
+    console.log(data);
+  };
 
   useEffect(() => {
-    export const fetchEvents = async (index) => {
-      setLoading(true);
-      const { data } = await Axios.get(
-        `https://api.riyadh.sa/api/CountedEvents?_format=json&page=${index}`
-      );
-      items = data.result.items;
-      setEvents(data);
-      setLoading(false);
-      console.log(data);
-    };
+    fetchEvents();
   }, []);
 
   const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + eventPerPage;
 
   console.log(items);
-  let total = 36;
+  // let total = 36;
   const pageCount = Math.ceil(total / eventPerPage);
 
   // Invoke when user click to request another page.
@@ -35,6 +40,7 @@ export default function FetchData() {
     // console.log("event", event.selected);
     setItemOffset(newOffset);
     fetchEvents(event.selected);
+    setCurrentPage(event.selected);
   };
 
   return (
