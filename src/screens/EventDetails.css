@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.shadow{
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  -webkit-box-shadow: -2px -1px 15px 1px rgba(0,0,0,0.5);
+  -moz-box-shadow: -3px -2px 30px 1px rgba(0,0,0,0.425);
+  box-shadow: -4px -3px 45px 1px rgba(0,0,0,0.35);
+}
+
+.pageTitle{
+    text-align: left;
+    font-weight: 100;
+    font-size: xxx-large;
+    height: 100%;
+    width: 100%;
+}
+  .pageContainer{
+    display: flex;
+  }
+  
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
