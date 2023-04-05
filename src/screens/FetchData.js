@@ -7,10 +7,11 @@ import "./FetchData.css";
 export default function FetchData() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
+  const eventPerPage = useState(12);
   var items: Item[] = null;
 
   useEffect(() => {
-    const fetchEvents = async (index) => {
+    export const fetchEvents = async (index) => {
       setLoading(true);
       const { data } = await Axios.get(
         `https://api.riyadh.sa/api/CountedEvents?_format=json&page=${index}`
