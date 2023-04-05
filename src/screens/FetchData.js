@@ -7,8 +7,7 @@ import "./FetchData.css";
 export default function FetchData() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [eventPerPage, setEventPerPage] = useState(12);
+  const [eventPerPage, setEventPerPage] = useState(0);
   const [total, setTotal] = useState(0);
   var items: Item[] = null;
   const fetchEvents = async (index) => {
@@ -18,6 +17,7 @@ export default function FetchData() {
     );
     items = data.result.items;
     setTotal(data.result.counters.total);
+    setEventPerPage(items.length);
     setEvents(data);
     setLoading(false);
     console.log(data);
@@ -25,22 +25,14 @@ export default function FetchData() {
 
   useEffect(() => {
     fetchEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [itemOffset, setItemOffset] = useState(0);
-  const endOffset = itemOffset + eventPerPage;
-
-  console.log(items);
-  // let total = 36;
   const pageCount = Math.ceil(total / eventPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * eventPerPage) % total;
-    // console.log("event", event.selected);
-    setItemOffset(newOffset);
     fetchEvents(event.selected);
-    setCurrentPage(event.selected);
   };
 
   return (
