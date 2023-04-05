@@ -7,8 +7,16 @@ import "./FetchData.css";
 export default function FetchData() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [eventPerPage, setEventPerPage] = useState(0);
+  const [eventPerPage, setEventPerPage] = useState(12);
   const [total, setTotal] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+
+  useEffect(() => {
+    fetchEvents();
+    setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   var items: Item[] = null;
   const fetchEvents = async (index) => {
     setLoading(true);
@@ -17,18 +25,11 @@ export default function FetchData() {
     );
     items = data.result.items;
     setTotal(data.result.counters.total);
-    setEventPerPage(items.length);
+    eventPerPage === 0 && setEventPerPage(data.result.items.length);
+    setPageCount(Math.ceil(data.result.counters.total / eventPerPage));
     setEvents(data);
     setLoading(false);
-    console.log(data);
   };
-
-  useEffect(() => {
-    fetchEvents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const pageCount = Math.ceil(total / eventPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -40,7 +41,7 @@ export default function FetchData() {
       <Card load={loading} eventsList={events} />
       <ReactPaginate
         onPageChange={handlePageClick}
-        pageRangeDisplayed={12}
+        pageRangeDisplayed={eventPerPage}
         pageCount={pageCount}
         renderOnZeroPageCount={null}
         nextLabel="next >"
